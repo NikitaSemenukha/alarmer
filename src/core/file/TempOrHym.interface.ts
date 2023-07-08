@@ -1,0 +1,1 @@
+export type ITempOrHym = 'temperature' | 'humidity';

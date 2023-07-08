@@ -1,0 +1,1 @@
+export type statusTempAndHum = 'critical' | 'pre-critical' | 'normal';
