@@ -1,12 +1,23 @@
+// dataWriter.service.ts
 import fs from 'fs';
 
+/**
+ * Class responsible for writing data to a file.
+ */
 export class DataWriter {
     private dataArray: any[];
 
+    /**
+     * Constructs a new instance of DataWriter.
+     */
     constructor() {
         this.dataArray = [];
     }
 
+    /**
+     * Writes data to a file.
+     * @param data The data to be written.
+     */
     writeDataToFile(data: any) {
         this.dataArray.push(data); // Add the data to the array
 
@@ -15,11 +26,10 @@ export class DataWriter {
 
         fs.writeFile('data.json', formattedData, (err) => {
             if (err) {
-                console.error('Ошибка при записи данных в файл:', err);
+                console.error('Error writing data to file:', err);
             } else {
-                console.log('Данные успешно записаны в файл data.json');
+                console.log('Data successfully written to data.json');
             }
         });
     }
 }
-

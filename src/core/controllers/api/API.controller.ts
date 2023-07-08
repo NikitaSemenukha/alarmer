@@ -2,6 +2,14 @@
 import { Request, Response } from 'express';
 import { dataHandler } from '../../handlers/dataHandler.handler';
 
+/**
+
+Handler for retrieving data.
+
+@param req The request object.
+
+@param res The response object.
+*/
 export const getData = async (req: Request, res: Response) => {
     try {
         const { mode } = req.query;

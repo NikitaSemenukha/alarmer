@@ -5,16 +5,19 @@ import { statusTempAndHum } from "../input/status.type";
 export class DataUpdater {
 
     updateData(): ITempHumJson {
+        // Generate random values for temperature and humidity
         const temperature = generateTempOrHumidity('temperature');
         const humidity = generateTempOrHumidity('humidity');
 
+        // Get the status based on the generated values
         const temperatureStatus = this.getTemperatureStatus(temperature);
         const humidityStatus = this.getHumidityStatus(humidity);
 
+        // Create a new object with the updated data and status
         const newData: ITempHumJson = {
-            temperature: generateTempOrHumidity('temperature'),
-            humidity: generateTempOrHumidity('humidity'),
-            temperatureStatus: this.getTemperatureStatus(temperature),
+            temperature: temperature,
+            humidity: humidity,
+            temperatureStatus: temperatureStatus,
             humidityStatus: humidityStatus,
             createdAt: new Date()
         };
@@ -23,6 +26,7 @@ export class DataUpdater {
     }
 
     getTemperatureStatus(temperature: number): statusTempAndHum {
+        // Determine the temperature status based on the temperature value
         if (temperature > 50) {
             return 'critical';
         } else if (temperature >= 35 && temperature <= 50) {
@@ -33,6 +37,7 @@ export class DataUpdater {
     }
 
     getHumidityStatus(humidity: number): statusTempAndHum {
+        // Determine the humidity status based on the humidity value
         if (humidity > 70) {
             return 'critical';
         } else if (humidity >= 40 && humidity <= 70) {
