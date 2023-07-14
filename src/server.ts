@@ -22,5 +22,5 @@ setInterval(() => {
 
 // Start the server
 app.listen(3000, () => {
-    console.log('Сервер запущен на порту 3000');
+    console.log('Server successfully started\nConnection port: 3000');
 });
