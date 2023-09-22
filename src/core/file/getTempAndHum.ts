@@ -35,6 +35,7 @@ export function getTempAndHum(): Promise<Array<number>> {
             let data = Buffer.alloc(8, 0)
 
             fs.read(fd, data, 0, 8, 0, fsCB)
+            await sleep(10)
 
             const humAndTemp = [data.readUInt16BE(2)/10.0, data.readInt16BE(4)/10.0]
             resolve(humAndTemp)
