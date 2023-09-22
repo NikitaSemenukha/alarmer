@@ -19,7 +19,8 @@ export class DataInputBuilder {
         if (!this.intervalId) {
             // Start the interval and add updated data to the array
             this.intervalId = setInterval(() => {
-                this.data.push(this.dataUpdater.updateData());
+                const promise = this.dataUpdater.updateData()
+                                                .then((data) => this.data.push(data)); 
             }, 5000);
         }
         return this;
