@@ -1,6 +1,7 @@
 import { getTempAndHum } from "../file/getTempAndHum";
 import { ITempHumJson } from "../input/ITempHumJson.interface";
 import { statusTempAndHum } from "../input/status.type";
+import {sendAlarmMessage} from "../gsm/gsm"
 
 export class DataUpdater {
 
@@ -30,9 +31,10 @@ export class DataUpdater {
 
     getTemperatureStatus(temperature: number): statusTempAndHum {
         // Determine the temperature status based on the temperature value
-        if (temperature > 50) {
+        if (temperature > 29 || temperature < 13) {
+            sendAlarmMessage('Alarm: Temperature is outside normal bounds!');
             return 'critical';
-        } else if (temperature >= 35 && temperature <= 50) {
+        } else if (temperature > 24 || temperature < 18) {
             return 'pre-critical';
         } else {
             return 'normal';
@@ -41,9 +43,10 @@ export class DataUpdater {
 
     getHumidityStatus(humidity: number): statusTempAndHum {
         // Determine the humidity status based on the humidity value
-        if (humidity > 70) {
+        if (humidity > 65 || humidity < 35) {
+            sendAlarmMessage('Alarm: Humidity is outside normal bouds!');
             return 'critical';
-        } else if (humidity >= 40 && humidity <= 70) {
+        } else if (humidity > 60 || humidity < 40) {
             return 'pre-critical';
         } else {
             return 'normal';
